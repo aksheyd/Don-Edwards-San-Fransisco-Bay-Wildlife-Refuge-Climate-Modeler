@@ -1,5 +1,5 @@
 # Makefile
-# Build rules for EECS 280 project 2
+# Build rules for Climate Modeler
 
 # Compiler
 CXX ?= g++
@@ -7,12 +7,11 @@ CXX ?= g++
 # Compiler flags
 CXXFLAGS ?= --std=c++11 -Wall -Werror -pedantic -g
 
-# Run a regression test
-test: main.exe
-	./main.exe
+BOOST_ROOT := "/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/boost_1_78_0"
+BOOST_INC := ${BOOST_ROOT}/include
 
 main.exe: main.cpp 
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) -I$(BOOST_ROOT) $^ -o $@
 
 
 
@@ -21,3 +20,5 @@ main.exe: main.cpp
 
 clean:
 	rm -rvf *.exe *.out.txt *.out.ppm *.dSYM *.stackdump
+
+

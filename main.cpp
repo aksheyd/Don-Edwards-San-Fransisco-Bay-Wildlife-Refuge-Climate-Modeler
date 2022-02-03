@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <cstdlib>
 
-#include <boost_1_78_0/boost/python.hpp>
+//#include <boost/python.hpp>
 
 using namespace std;
 
@@ -49,7 +49,7 @@ void DESFB_overview() {
     cout << "Species: 269 Birds, 28 Mammals, 12 Amphibian/Reptiles, 62 Fish, 335 Fauna" << endl;
     cout << "Data From US Fish & Wildlife Services: https://fws.gov/refuge/Don_Edwards_San_Francisco_Bay/" << endl;
 
-    system("python3 sheet_analyzer.py");
+    system("\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/run_python.sh\"");
 
     cout << "E: Endangered; T: Threatened; SSC: State Species of Concern" << endl;
     cin >> input;
