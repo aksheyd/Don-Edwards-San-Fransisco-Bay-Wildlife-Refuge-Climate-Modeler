@@ -1,3 +1,4 @@
+- added changelog
 - c++ to python calling works, python script now able to iterate through dataset to calculate danger level of birds
 - changed readme
 - did so much stuff just to realize that I spelt the filenames wrong :(
