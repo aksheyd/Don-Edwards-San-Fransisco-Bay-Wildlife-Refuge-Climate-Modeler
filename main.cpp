@@ -1,5 +1,9 @@
 #include <iostream>
 #include <string>
+#include <stdio.h>
+#include <cstdlib>
+
+#include <boost_1_78_0/boost/python.hpp>
 
 using namespace std;
 
@@ -25,7 +29,7 @@ int main() {
             command_screen();
         }
     }
-
+    return 0;
 }
 
 void command_screen() {
@@ -42,8 +46,10 @@ void DESFB_overview() {
     cout << "===============================================================" << endl << endl;
 
     cout << "Habitats: Marsh, Ponds, Mudflat, Vernal Pools, Uplands" << endl;
-    cout << "Species: 269 Birds, 28 Mammals, 12 Amphibian/Reptiles, 62 Fish" << endl;
+    cout << "Species: 269 Birds, 28 Mammals, 12 Amphibian/Reptiles, 62 Fish, 335 Fauna" << endl;
     cout << "Data From US Fish & Wildlife Services: https://fws.gov/refuge/Don_Edwards_San_Francisco_Bay/" << endl;
+
+    system("python3 sheet_analyzer.py");
 
     cout << "E: Endangered; T: Threatened; SSC: State Species of Concern" << endl;
     cin >> input;
