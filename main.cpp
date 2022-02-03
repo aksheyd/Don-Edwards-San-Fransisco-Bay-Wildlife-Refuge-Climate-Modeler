@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <cstdlib>
 
-//#include <boost/python.hpp>
 
 using namespace std;
 
@@ -14,6 +13,13 @@ int main() {
     int input;
 
     system("clear");
+
+    string filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/sheet_analyzer.py\"";
+    string command = "python3 ";
+    command += filename;
+    system(command.c_str());
+
+
     cout << "Welcome to the Don Edwards San Fransisco Bay Wildlife Refuge Climate Modeler" << endl;
     cout << "Please choose an option from below:" << endl;
     cout << "1: Start" << endl;
@@ -21,7 +27,7 @@ int main() {
 
     while (cin >> input) {
         if (input == 1) {
-            DESFB_overview();
+            //DESFB_overview(&argv[]);
             break;
         } else if (input == 2) {
             break;
@@ -48,9 +54,7 @@ void DESFB_overview() {
     cout << "Habitats: Marsh, Ponds, Mudflat, Vernal Pools, Uplands" << endl;
     cout << "Species: 269 Birds, 28 Mammals, 12 Amphibian/Reptiles, 62 Fish, 335 Fauna" << endl;
     cout << "Data From US Fish & Wildlife Services: https://fws.gov/refuge/Don_Edwards_San_Francisco_Bay/" << endl;
-
-    system("\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/run_python.sh\"");
-
+  
     cout << "E: Endangered; T: Threatened; SSC: State Species of Concern" << endl;
     cin >> input;
 }
