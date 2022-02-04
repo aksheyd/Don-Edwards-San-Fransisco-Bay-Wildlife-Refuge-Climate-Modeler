@@ -2,6 +2,8 @@
 #include <string>
 #include <stdio.h>
 #include <cstdlib>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -47,11 +49,33 @@ void DESFB_overview() {
     cout << "Species: 269 Birds, 28 Mammals, 12 Amphibian/Reptiles, 62 Fish, 335 Fauna" << endl;
     cout << endl;
 
+    /*
+    std::this_thread::sleep_for(chrono::nanoseconds(10));
+    std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(15));
+    system("clear");
+    */
+
+    cout << "Here's a sneakpeek at some of the birds, mammals, etc" << endl;
+    cout << "For the Danger Level coloumn, this number is calculated based on the inital data given" << endl <<
+            "from the US Fish & Wildlife Service. It is based on many factors including the species" << endl <<
+            "origin, endangered-level, etc." << endl;
+    /*
+    std::this_thread::sleep_for(chrono::nanoseconds(10));
+    std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(4));
+    */
+
     string filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/sheet_analyzer.py\"";
     string command = "python3 ";
     command += filename;
+    system("clear");
     system(command.c_str());
 
-    cout << "E: Endangered; T: Threatened; SSC: State Species of Concern" << endl;
+    filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/print_data.py\"";
+    command = "python3 ";
+    command += filename;
+    system("clear");
+    system(command.c_str());
+
     cin >> input;
+
 }
