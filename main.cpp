@@ -77,5 +77,4 @@ void DESFB_overview() {
     system(command.c_str());
 
     cin >> input;
-
 }
