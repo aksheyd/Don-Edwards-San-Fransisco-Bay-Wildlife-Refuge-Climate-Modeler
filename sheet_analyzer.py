@@ -56,9 +56,9 @@ def DangerLevel (row1):
     # SSC (Species of Special Concern) is a CA specific classification for threatened and declining population species
     elif (row1["State"] == "SSC"):
         returnVal += 50
-    # SP means FILL THIS OUT WITH YOU HEAD BACK FROM DFESB
+    # SP means State Protected 
     elif (row1["State"] == "SP"):
-        returnVal += 0
+        return 0
     
     return returnVal
 
