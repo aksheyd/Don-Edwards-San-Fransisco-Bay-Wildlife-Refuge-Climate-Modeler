@@ -1,3 +1,6 @@
+- one more time
+- updated readme again lmao
+- updated readme
 - added changelog
 - c++ to python calling works, python script now able to iterate through dataset to calculate danger level of birds
 - changed readme
