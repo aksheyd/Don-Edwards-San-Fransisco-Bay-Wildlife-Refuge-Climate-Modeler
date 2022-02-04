@@ -4,21 +4,33 @@ import pandas as pd
 import io
 import json
 
+"""
 # Adds command line arguements to take in input for climate
 import argparse
 parser = argparse.ArgumentParser(description='Analyzer for data')
 parser.add_argument("-p", "--print_string", help="Takes in the supplied argument for calculation.", nargs='*')
 args = parser.parse_args()
 print(args.print_string)
+"""
 
+# Birds CSV
 bs_df = pd.read_csv (r'/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/BirdSheet.csv')
 bs_df = bs_df[:270] 
+
+# Mammals CSV
+m_df = pd.read_csv (r'/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/MammalsSheet.csv')
+m_df = m_df[:30] 
 
 #converts Occurrence column into string for if statements in DangerLevel func
 bs_df["Occurrence"] = bs_df["Occurrence"].astype(str)
 bs_df["Classification"] = bs_df["Classification"].astype(str)
 bs_df["Federal"] = bs_df["Federal"].astype(str)
 bs_df["State"] = bs_df["State"].astype(str)
+
+m_df["Occurrence"] = m_df["Occurrence"].astype(str)
+m_df["Classification"] = m_df["Classification"].astype(str)
+m_df["Federal"] = m_df["Federal"].astype(str)
+m_df["State"] = m_df["State"].astype(str)
 
 def DangerLevel (row1):
     returnVal = 0
@@ -33,10 +45,17 @@ def DangerLevel (row1):
     elif (row1["Occurrence"] == "accidental"):
         returnVal += 10
 
-    # Native birds, like locally nested, have better climate acclimation
+    # Solo habitat lowers survival chance (LOOK INTO CHANGING CLIMATE BASED ON HABTIAT)
+    if ((row1["Occurrence"] == "upland") or (row1["Occurrence"] == "marsh") or (row1["Occurrence"] == "tidal sloughs")):
+        returnVal += 10
+    # Multiple habitats means greater survival in more areas
+    elif ((row1["Occurrence"] == "all habitats")):
+        returnVal += 5
+
+    # Native species, like locally nested, have better climate acclimation
     if (row1["Classification"] == "native"):
         returnVal += 1
-    # Non Native birds are given higher danger because of above 
+    # Non Native species are given higher danger because of above 
     elif (row1["Classification"] == "non-native"):
         returnVal += 5
 
@@ -57,16 +76,19 @@ def DangerLevel (row1):
     elif (row1["State"] == "SSC"):
         returnVal += 50
     # SP means State Protected 
-    elif (row1["State"] == "SP"):
+    elif ((row1["State"] == "SP") or (row1["State"] == "FP")):
         return 0
-    
+
     return returnVal
 
 # Creates Danger Level column
 bs_df.insert(len(bs_df.columns), 'Danger Level', 0)
+m_df.insert(len(m_df.columns), 'Danger Level', 0)
 
 # Iterates through rows to calculate Danger Level
 bs_df['Danger Level'] = bs_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+m_df['Danger Level'] = m_df.apply(lambda row1: DangerLevel(row1), axis = 1)
 
 bs_df.to_csv("output_birds.csv", index = False)
+m_df.to_csv("output_mammals.csv", index = False)
 #print(bs_df)
