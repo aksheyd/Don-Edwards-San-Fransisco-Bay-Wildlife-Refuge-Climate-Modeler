@@ -10,9 +10,8 @@ import argparse
 parser = argparse.ArgumentParser(description='Analyzer for data')
 parser.add_argument("-p", "--print_string", help="Takes in the supplied argument for calculation.", nargs='*')
 args = parser.parse_args()
-print(args.print_string)
 changes = int(args.print_string[0])
-print(changes)
+
 
 
 
