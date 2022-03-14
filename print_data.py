@@ -52,3 +52,4 @@ print("Average Danger Level for Fish = ", "{:.2f}".format(f_df["Danger Level"].m
 print("Amount of Fish = ", len(f_df))
 os.remove("output_fishs.csv")
 print() 
+
