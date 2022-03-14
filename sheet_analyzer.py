@@ -4,14 +4,17 @@ import pandas as pd
 import io
 import json
 
-"""
+
 # Adds command line arguements to take in input for climate
 import argparse
 parser = argparse.ArgumentParser(description='Analyzer for data')
 parser.add_argument("-p", "--print_string", help="Takes in the supplied argument for calculation.", nargs='*')
 args = parser.parse_args()
 print(args.print_string)
-"""
+changes = int(args.print_string[0])
+print(changes)
+
+
 
 # Birds CSV
 bs_df = pd.read_csv (r'/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/BirdSheet.csv')
@@ -55,7 +58,7 @@ def DangerLevel (row1):
 
     # Locally nested birds have acclimated to the climate better
     if (row1["Occurrence"] == "nests locally"):
-        returnVal += 1
+        returnVal += 1 + changes
     # This is just an estimate between accidental occurring birds and locally nested
     elif (row1["Occurrence"] == "nan"):
         returnVal += 5
