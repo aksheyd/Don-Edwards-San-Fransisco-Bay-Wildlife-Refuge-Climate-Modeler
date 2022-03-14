@@ -9,11 +9,15 @@ using namespace std;
 
 void command_screen();
 void DESFB_overview();
+void modeler_main();
+void instructions();
+void change_climate(int input);
+
 
 int main() {
     int input;
 
-    system("clear");
+    system("clear && printf \'\\e[3J\'");
     cout << "Welcome to the Don Edwards San Fransisco Bay Wildlife Refuge Climate Modeler" << endl;
     cout << "Please choose an option from below:" << endl;
     cout << "1: Start" << endl;
@@ -39,8 +43,8 @@ void command_screen() {
 }
 
 void DESFB_overview() {
-    system("clear");
-    int input;
+    system("clear && printf \'\\e[3J\'");
+    string input;
 
     cout << "Don Edwards San Francisco Bay National Wildlife Refuge, CA, USA" << endl;
     cout << "===============================================================" << endl << endl;
@@ -52,7 +56,7 @@ void DESFB_overview() {
     /*
     std::this_thread::sleep_for(chrono::nanoseconds(10));
     std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(15));
-    system("clear");
+    system("clear && printf \'\\e[3J\'");
     */
 
     cout << "Here's a sneakpeek at some of the birds, mammals, etc" << endl;
@@ -67,14 +71,43 @@ void DESFB_overview() {
     string filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/sheet_analyzer.py\"";
     string command = "python3 ";
     command += filename;
-    system("clear");
+    system("clear && printf \'\\e[3J\'");
     system(command.c_str());
 
     filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/print_data.py\"";
     command = "python3 ";
     command += filename;
-    system("clear");
+    system("clear && printf \'\\e[3J\'");
     system(command.c_str());
 
+    cout << "Please click enter when you are ready to move on!" << endl;
     cin >> input;
+
+    modeler_main();
+    return;
+}
+
+void modeler_main() {
+    system("clear && printf \'\\e[3J\'");
+
+    int input;
+    cout << "Now, it\'s your turn! Use the following instructions to affect the climate:" << endl << endl;
+    instructions();
+    cin >> input;
+    change_climate(input);
+    return;
+}
+
+void instructions() {
+    // Make this a more robust command system, for now its just the desired temperature
+    cout << "Input a temperature from 0 to 100 degrees Fahrenheit." << endl;
+    cout << "Ex: 50, 95, 100, 5, etc." << endl;
+}
+
+void change_climate(int input) {
+    if (input > 50) {
+        cout << " dead rip" << endl;
+    }
+    int hel;
+    cin >> hel;
 }
