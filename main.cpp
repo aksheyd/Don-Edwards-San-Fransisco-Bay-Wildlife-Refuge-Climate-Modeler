@@ -14,6 +14,7 @@ void instructions();
 void change_climate(int input);
 
 
+
 int main() {
     int input;
 
