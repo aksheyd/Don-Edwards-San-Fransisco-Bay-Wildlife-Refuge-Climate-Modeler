@@ -4,11 +4,11 @@ Birds:
 0  Greater White-fronted Goose    Anser albifrons             6
 1                   Snow Goose    Chen hyperborea             6
 2                 Ross’s Goose        Chen rossii             6
-3                 Canada Goose  Branta canadensis             2
+3                 Canada Goose  Branta canadensis            12
 4               Cackling Goose  Branta hutchinsii             6
-Max Danger Level for Birds =  61
+Max Danger Level for Birds =  62
 Min Danger Level for Birds =  0
-Average Danger Level for Birds =  9.46
+Average Danger Level for Birds =  11.80
 Amount of Birds =  269
 
 Mammals: 
