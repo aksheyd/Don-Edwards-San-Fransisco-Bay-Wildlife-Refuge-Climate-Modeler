@@ -16,4 +16,7 @@ $ make main.exe
 $ ./main.exe
 ```
 
+# Explanation of Danger Level Calculations
+<img src="/danger_level_regression.png" alt="regression"/>
+
 
