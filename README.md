@@ -17,6 +17,6 @@ $ ./main.exe
 ```
 
 # Explanation of Danger Level Calculations
-<img src="/danger_level_regression.png" alt="regression"/>
+![](img/danger_lvl_regression.png)
 
 
