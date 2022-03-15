@@ -69,7 +69,7 @@ void DESFB_overview() {
 
     string filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/sheet_analyzer.py\"";
     string command = "python3 ";
-    command += filename + " -p 0"; //accounts for command line arguements
+    command += filename + " -p 60"; //accounts for command line arguements
     system("clear && printf \'\\e[3J\'");
     system(command.c_str());
 
@@ -99,6 +99,7 @@ void modeler_main() {
         instructions();
         cin >> input;
     }
+
     change_climate(input);
     return;
 }
@@ -110,21 +111,21 @@ void instructions() {
 }
 
 void change_climate(int input) {
-    if (input > 50) {
-        string inp_s = to_string(input);
-        string filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/sheet_analyzer.py\"";
-        string command = "python3 ";
-        command += filename + " -p " + inp_s; //accounts for command line arguements
-        cout << command << endl;
-        system("clear && printf \'\\e[3J\'");
-        system(command.c_str());
- 
-        filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/print_data.py\"";
-        command = "python3 ";
-        command += filename;
-        system("clear && printf \'\\e[3J\'");
-        system(command.c_str());
-    }
+    string inp_s = to_string(input);
+    string filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/sheet_analyzer.py\"";
+    string command = "python3 ";
+    command += filename + " -p " + inp_s; //accounts for command line arguements
+    cout << command << endl;
+    system("clear && printf \'\\e[3J\'");
+    system(command.c_str());
+
+    filename = "\"/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/print_data.py\"";
+    command = "python3 ";
+    command += filename;
+    system("clear && printf \'\\e[3J\'");
+    system(command.c_str());
+    
+
     int hel;
     cin >> hel;
 }

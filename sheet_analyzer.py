@@ -3,17 +3,25 @@
 import pandas as pd
 import io
 import json
-
+import math
 
 # Adds command line arguements to take in input for climate
 import argparse
 parser = argparse.ArgumentParser(description='Analyzer for data')
 parser.add_argument("-p", "--print_string", help="Takes in the supplied argument for calculation.", nargs='*')
 args = parser.parse_args()
-changes = int(args.print_string[0])
+new_temp = int(args.print_string[0])
+avg_temp_dfsb = 60
+diff = avg_temp_dfsb - new_temp
 
+# Calculates changes to danger level (see readme for explanation on how this works! - IN PROGRESS)
+if (diff <= 11):
+    changeVal = math.ceil(pow(1.2, diff) - 1)
+if (diff > 11):
+    changeVal = math.ceil(0.0032 * pow(diff - 35, 3) + 50)
 
-
+#changeVal = math.ceil(pow(1.07977616, diff) - 1)
+#changeVal = (5/3) * diff
 
 # Birds CSV
 bs_df = pd.read_csv (r'/Users/aksheydeokule/Documents/EcoData S2/Climate Modeler/BirdSheet.csv')
@@ -52,12 +60,18 @@ f_df["Classification"] = f_df["Classification"].astype(str)
 f_df["Federal"] = f_df["Federal"].astype(str)
 f_df["State"] = f_df["State"].astype(str)
 
+# Creates Danger Level column
+bs_df.insert(len(bs_df.columns), 'Danger Level', 0)
+m_df.insert(len(m_df.columns), 'Danger Level', 0)
+ar_df.insert(len(ar_df.columns), 'Danger Level', 0)
+f_df.insert(len(f_df.columns), 'Danger Level', 0)
+
 def DangerLevel (row1):
-    returnVal = 0
+    returnVal = changeVal
 
     # Locally nested birds have acclimated to the climate better
     if (row1["Occurrence"] == "nests locally"):
-        returnVal += 1 + changes
+        returnVal += 1 
     # This is just an estimate between accidental occurring birds and locally nested
     elif (row1["Occurrence"] == "nan"):
         returnVal += 5
@@ -114,20 +128,29 @@ def DangerLevel (row1):
 
     return returnVal
 
-# Creates Danger Level column
-bs_df.insert(len(bs_df.columns), 'Danger Level', 0)
-m_df.insert(len(m_df.columns), 'Danger Level', 0)
-ar_df.insert(len(ar_df.columns), 'Danger Level', 0)
-f_df.insert(len(f_df.columns), 'Danger Level', 0)
+if (new_temp == avg_temp_dfsb):
+    changeVal = 0
 
-# Iterates through rows to calculate Danger Level
-bs_df['Danger Level'] = bs_df.apply(lambda row1: DangerLevel(row1), axis = 1)
-m_df['Danger Level'] = m_df.apply(lambda row1: DangerLevel(row1), axis = 1)
-ar_df['Danger Level'] = ar_df.apply(lambda row1: DangerLevel(row1), axis = 1)
-f_df['Danger Level'] = f_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    # Iterates through rows to calculate Danger Level
+    bs_df['Danger Level'] = bs_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    m_df['Danger Level'] = m_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    ar_df['Danger Level'] = ar_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    f_df['Danger Level'] = f_df.apply(lambda row1: DangerLevel(row1), axis = 1)
 
-# Turns all datasets into csv files
-bs_df.to_csv("output_birds.csv", index = False)
-m_df.to_csv("output_mammals.csv", index = False)
-ar_df.to_csv("output_amphibianreptiles.csv", index = False)
-f_df.to_csv("output_fishs.csv", index = False)
+    # Turns all datasets into csv files
+    bs_df.to_csv("output_birds.csv", index = False)
+    m_df.to_csv("output_mammals.csv", index = False)
+    ar_df.to_csv("output_amphibianreptiles.csv", index = False)
+    f_df.to_csv("output_fishs.csv", index = False)
+else:
+    # Iterates through rows to calculate Danger Level
+    bs_df['Danger Level'] = bs_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    m_df['Danger Level'] = m_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    ar_df['Danger Level'] = ar_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+    f_df['Danger Level'] = f_df.apply(lambda row1: DangerLevel(row1), axis = 1)
+
+    # Turns all datasets into csv files
+    bs_df.to_csv("output_birds.csv", index = False)
+    m_df.to_csv("output_mammals.csv", index = False)
+    ar_df.to_csv("output_amphibianreptiles.csv", index = False)
+    f_df.to_csv("output_fishs.csv", index = False)
