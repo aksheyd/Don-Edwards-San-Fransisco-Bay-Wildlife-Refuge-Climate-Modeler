@@ -17,6 +17,12 @@ $ ./main.exe
 ```
 
 # Explanation of Danger Level Calculations
+I tried many ways to model how changes in temperature would affect survivability of the flora and fauna in the DESFB as shown in the this image:
+![](img/regression_tries.png)
+
+Yet, I seemed to have landed on whats shown in this one:
 ![](img/danger_lvl_regression.png)
+
+IN PROGRESS!
 
 
