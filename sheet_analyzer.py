@@ -5,6 +5,7 @@ import io
 import json
 import math
 
+
 # Adds command line arguements to take in input for climate
 import argparse
 parser = argparse.ArgumentParser(description='Analyzer for data')

@@ -53,3 +53,4 @@ print("Amount of Fish = ", len(f_df))
 os.remove("output_fishs.csv")
 print() 
 
+

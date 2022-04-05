@@ -25,6 +25,6 @@ Yet, I seemed to have landed on whats shown in this one:
 
 <img src="img/danger_lvl_regression.png" width="500">
 
-IN PROGRESS!
+IN PROGRESS = (working on changing the csv files when the user inputs a new temperature!)
 
 
